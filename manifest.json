@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "MeetSpeak",
+  "description": "MeetSpeak lets you use speech-to-text to provide live captions for presentations",
+  "version": "1.0.0",
+  "options_page": "options.html",
+  "action": {
+    "default_icon": "images/caption.png",
+    "default_title": "MeetSpeak",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "./js/background.js"
+  },
+  "icons": {
+    "16": "images/caption16.png",
+    "48": "images/caption48.png",
+    "128": "images/caption128.png"
+  },
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "notifications",
+    "storage",
+    "activeTab",
+    "declarativeContent"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
